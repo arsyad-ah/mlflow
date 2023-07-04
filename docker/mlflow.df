@@ -6,8 +6,5 @@ RUN pip install -r requirements.txt
 
 ENTRYPOINT mlflow server \
     --backend-store-uri postgresql://$POSTGRES_USER:$POSTGRES_PASSWORD@$POSTGRES_NAME:$POSTGRES_PORT/$MLFLOW_DB \
-    # --default-artifact-root s3://${MLFLOW_BUCKET_NAME} \
-    # --artifacts-destination s3://${MLFLOW_BUCKET_NAME} \
-    --default-artifact-root http://${MINIO_SERVER_NAME}:${MINIO_PORT} \
-    --artifacts-destination http://${MINIO_SERVER_NAME}:${MINIO_PORT} \
+    --artifacts-destination http://${MINIO_SERVER_NAME}:${MINIO_PORT}/${MLFLOW_BUCKET_NAME} \
     --host 0.0.0.0
